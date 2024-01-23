@@ -1,0 +1,28 @@
+{% macro pendriveContainer(songs, id, duration) -%}
+<div class="container pendriveContainer" id="{{ id }}">
+  <p class="title">AS + TOCADAS {{ duration }}</p>
+  <div class="container"></div>
+  <ol class="top-tracks-list">
+    {% for song in songs %}
+    <li>
+      <a
+        class="song-link"
+        href="{{ song.external_urls.spotify }}"
+        target="_blank"
+        >{{ song.artists[0].name }} - {{ song.name }}</a
+      >
+    </li>
+    {% endfor %}
+  </ol>
+  <div class="grid-container">
+    <div class="album-covers">
+      {% for song in songs %}
+      <a href="{{ song.album.external_urls.spotify }}" target="_blank">
+        <img src="{{ song.album.images[0].url }}" alt="{{ song.name }}" />
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{%- endmacro %}
